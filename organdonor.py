@@ -1,7 +1,7 @@
 import requests
 import json
 import urllib
-import sys
+import argparse
 from gmusicapi import Musicmanager
 
 
@@ -19,34 +19,32 @@ def download_video(youtube_video_url):
 
     response = requests.request("POST", url, headers=headers, params=querystring)
 
-    print(response.text)
-
     data = json.loads(response.text)
 
     link = data["link"]
     title = data["title"]
-    print(link)
+    print("Downloading " + link)
 
     file_name = title + ".mp3"
-    urllib.urlretrieve(link, title + ".mp3")
+    urllib.urlretrieve(link, file_name)
     return file_name
 
+parser = argparse.ArgumentParser(description='Download YouTube to MP3, upload to GPlay Music')
+parser.add_argument('video', metavar='video', type=str,
+                    help='the YouTube video url')
 
-video = None
-if len(sys.argv) > 1:
-    video = sys.argv[1]
+args = parser.parse_args()
 
-if video is None:
-    print("You need to provide a video url to download")
-    sys.exit(1)
+
+video = args.video
 
 # Download the file
-file_name = download_video(video)
+name = download_video(video)
 
 mm = Musicmanager()
 login_result = mm.login()
 if login_result is False:
     mm.perform_oauth(open_browser=True)
 # now we are ready to upload
-result = mm.upload(filepaths=file_name)
+result = mm.upload(filepaths=name)
 # TODO tell if success or not
