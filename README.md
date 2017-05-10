@@ -1,4 +1,10 @@
-# Pipe
+# OrganDonor
 
 Download mp3 from YouTube, upload to Google Play Music
+
+## Name
+YouTube to MP3 -> MP3 Pipe -> Pipe -> Organ -> Organ Donor is a cool song -> Sounds great
+
+## Thanks
+Great thanks to [gmusicapi](https://github.com/simon-weber/gmusicapi)
 
