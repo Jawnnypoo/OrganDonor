@@ -1,8 +1,12 @@
 # OrganDonor
-
 Download mp3 from YouTube, upload to Google Play Music
 
 ## Usage
+Installl dependencies:
+```shell
+pip install -r requirements.txt
+```
+Then:
 ```shell
 python organdonor.py https://www.youtube.com/watch?v=U4E60Ffa9yQ
 ```

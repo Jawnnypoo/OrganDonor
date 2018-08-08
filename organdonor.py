@@ -5,7 +5,6 @@ import argparse
 import sys
 from gmusicapi import Musicmanager
 
-
 def download_video(youtube_video_url):
     url = "http://www.youtubeinmp3.com/fetch/"
 
@@ -18,7 +17,8 @@ def download_video(youtube_video_url):
         'content-type': "application/x-www-form-urlencoded",
     }
 
-    response = requests.request("POST", url, headers=headers, params=querystring)
+    response = requests.request(
+        "POST", url, headers=headers, params=querystring)
 
     data = json.loads(response.text)
 
@@ -31,7 +31,8 @@ def download_video(youtube_video_url):
     return file_name
 
 
-parser = argparse.ArgumentParser(description='Download YouTube to MP3, upload to GPlay Music')
+parser = argparse.ArgumentParser(
+    description='Download YouTube to MP3, upload to GPlay Music')
 parser.add_argument('video', metavar='video', type=str,
                     help='the YouTube video url')
 
